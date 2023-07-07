@@ -1,6 +1,7 @@
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import "./globals.css";
 import { Inconsolata } from "next/font/google";
+import QueryProvider from "@/components/ui/queryclient-provider";
 
 const inter = Inconsolata({ subsets: ["latin"] });
 
@@ -18,7 +19,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-          {children}
+          <QueryProvider>{children}</QueryProvider>
         </ThemeProvider>
       </body>
     </html>

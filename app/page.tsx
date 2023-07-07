@@ -21,7 +21,7 @@ export default async function Analyzer() {
                 Block analyzer
               </Button>
             </Link>
-            <Link href="/analyzer">
+            <Link href="/browser">
               <Button variant="link" className="text-base px-0">
                 <Globe className="h-5 w-5 mr-2" />
                 Bitmap Browser

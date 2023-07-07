@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -15,7 +14,9 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useEffect } from "react";
+import { MetaData } from "@/types";
+import { useSearchParams } from "next/navigation";
 
 const formSchema = z.object({
   blocknumber: z
@@ -33,7 +34,8 @@ export function AddressForm({
 }: {
   setMetaData: Dispatch<SetStateAction<MetaData | null>>;
 }) {
-  // 1. Define your form.
+  const searchParams = useSearchParams();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -41,7 +43,14 @@ export function AddressForm({
     },
   });
 
-  // 2. Define a submit handler.
+  useEffect(() => {
+    const address = searchParams.get("address");
+    if (address) {
+      form.setValue("blocknumber", address);
+      form.handleSubmit(onSubmit)();
+    }
+  }, [searchParams]);
+
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
       const res = await fetch(

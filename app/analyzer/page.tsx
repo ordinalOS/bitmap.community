@@ -2,10 +2,11 @@
 import { useState } from "react";
 import { AddressForm } from "./address-form";
 import { MetadataTable } from "./metadata-table";
+import { MetaData } from "@/types";
 
 export default function Analyzer() {
   const [metaData, setMetaData] = useState<MetaData | null>(null);
-
+  console.log(metaData);
   return (
     <main className="flex min-h-screen flex-col px-4 py-8 max-w-3xl mx-auto">
       <div className="flex gap-1 items-baseline mt-20">
