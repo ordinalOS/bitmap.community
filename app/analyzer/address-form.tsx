@@ -15,11 +15,11 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Dispatch, SetStateAction, useEffect } from "react";
-import { MetaData } from "@/types";
 import { useSearchParams } from "next/navigation";
+import { Loader2 } from "lucide-react";
 
 const formSchema = z.object({
-  blocknumber: z
+  blockHeight: z
     .string()
     .min(1, {
       message: "Please enter a valid block number",
@@ -30,37 +30,31 @@ const formSchema = z.object({
 });
 
 export function AddressForm({
-  setMetaData,
+  setBlockHeight,
+  isLoading,
 }: {
-  setMetaData: Dispatch<SetStateAction<MetaData | null>>;
+  setBlockHeight: Dispatch<SetStateAction<string>>;
+  isLoading: boolean;
 }) {
   const searchParams = useSearchParams();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      blocknumber: "",
+      blockHeight: "",
     },
   });
 
   useEffect(() => {
     const address = searchParams.get("address");
     if (address) {
-      form.setValue("blocknumber", address);
+      form.setValue("blockHeight", address);
       form.handleSubmit(onSubmit)();
     }
   }, [searchParams]);
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    try {
-      const res = await fetch(
-        `http://api.bitmap.community/api/v1/rarity/${values.blocknumber}`
-      );
-      const data = await res.json();
-      setMetaData(data);
-    } catch (error) {
-      console.log(error);
-    }
+    setBlockHeight(values.blockHeight);
   }
 
   return (
@@ -68,7 +62,7 @@ export function AddressForm({
       <form onSubmit={form.handleSubmit(onSubmit)}>
         <FormField
           control={form.control}
-          name="blocknumber"
+          name="blockHeight"
           render={({ field }) => (
             <FormItem>
               <FormLabel className="text-base">
@@ -78,7 +72,14 @@ export function AddressForm({
                 <div className="flex w-full">
                   <Input placeholder="Example 796983" {...field} />
                   <Button type="submit" className="min-w-fit">
-                    Check metadata
+                    {isLoading ? (
+                      <>
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        Checking...
+                      </>
+                    ) : (
+                      "Check metadata"
+                    )}
                   </Button>
                 </div>
               </FormControl>

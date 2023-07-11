@@ -1,4 +1,4 @@
-import { DataWithRarity, ParamsWithRarity } from "@/types";
+import { BlockCardData, DataWithRarity, ParamsWithRarity } from "@/types";
 import {
   Tooltip,
   TooltipContent,
@@ -7,35 +7,36 @@ import {
 } from "@/components/ui/tooltip";
 import { colorSwitch } from "@/lib/utils";
 
-export function BitmapBox({ params }: { params: ParamsWithRarity }) {
+export function BitmapBox({ params }: { params: BlockCardData }) {
+  const { stats, blocktributes } = params;
   return (
-    <div className="grid grid-cols-2 gap-1">
-      {Object.entries(params).map(([key, value]) => {
-        return (
-          <BitmapInnerBox
-            key={key}
-            param={key}
-            value={value as DataWithRarity}
-          />
-        );
+    <>
+      {Object.entries(stats).map(([key, value]) => {
+        const bg = colorSwitch("bg", value.pr);
+
+        return <BitmapInnerBox key={key} param={key} value={value} bg={bg} />;
       })}
-    </div>
+    </>
   );
 }
 
 const BitmapInnerBox = ({
   param,
   value,
+  bg,
 }: {
   param: string;
   value: DataWithRarity;
+  bg: string;
 }) => {
-  const bg = colorSwitch("bg", value.pr);
   return (
     <TooltipProvider delayDuration={0}>
       <Tooltip>
         <TooltipTrigger>
-          <div className={`text-xs ${bg} aspect-video hover:border `}></div>
+          <div
+            className={`text-xs aspect-square hover:border `}
+            style={{ backgroundColor: bg }}
+          ></div>
         </TooltipTrigger>
         <TooltipContent>
           <p>

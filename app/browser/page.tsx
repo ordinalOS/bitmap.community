@@ -4,6 +4,7 @@ import { Fragment, useState } from "react";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { BitmapCard } from "./bitmap-card";
 import { BlockCardData } from "@/types";
+import { Navbar } from "@/components/ui/navbar";
 
 const traits = [
   "total_out",
@@ -59,77 +60,81 @@ export default function Analyzer() {
     },
   });
 
-  console.log(error);
+  console.log(data);
 
   return (
-    <main className="flex min-h-screen flex-col px-4 py-8 max-w-4xl mx-auto">
-      <div className="grid grid-cols-4 relative gap-6">
-        <div></div>
-        <div className="col-span-3">
-          <div className="flex gap-1 items-baseline mt-20">
-            <div className="inline-flex bg-orange-500 w-4 h-4"></div>
-            <div className="inline-flex bg-orange-400 w-4 h-4"></div>
-            <div className="inline-flex bg-orange-300 w-4 h-4"></div>
+    <>
+      <Navbar />
+      <main className="flex min-h-screen flex-col px-4 py-8 max-w-4xl mx-auto">
+        <div className="grid grid-cols-4 relative gap-6">
+          <div className="col-span-4">
+            <div className="flex gap-1 items-baseline">
+              <div className="inline-flex bg-orange-500 w-4 h-4"></div>
+              <div className="inline-flex bg-orange-400 w-4 h-4"></div>
+              <div className="inline-flex bg-orange-300 w-4 h-4"></div>
+            </div>
+            <h1 className="text-4xl font-semibold mb-">Bitmap browser</h1>
           </div>
-          <h1 className="text-4xl font-semibold mb-">Bitmap browser</h1>
-        </div>
 
-        <div>
-          <span className="text-lg flex mb-4 text-muted-foreground">
-            Traits
-          </span>
-          <div className="flex flex-col border-l">
-            {traits.map((trait) => (
-              <Button
-                variant={selectedTrait === trait ? "default" : "ghost"}
-                key={trait}
-                className="justify-start"
-                onClick={() => setSelectedTrait(trait)}
-              >
-                {selectedTrait === trait && ">_"}
-                {trait}
-              </Button>
-            ))}
+          <div>
+            <span className="text-lg flex mb-4 text-muted-foreground">
+              Traits
+            </span>
+            <div className="flex flex-col border-l">
+              {traits.map((trait) => (
+                <Button
+                  variant={selectedTrait === trait ? "default" : "ghost"}
+                  key={trait}
+                  className="justify-start"
+                  onClick={() => setSelectedTrait(trait)}
+                >
+                  {selectedTrait === trait && ">_"}
+                  {trait}
+                </Button>
+              ))}
+            </div>
+          </div>
+          <div className="col-span-3">
+            <span className="text-lg flex mb-4 text-muted-foreground">
+              Bitmaps ranking
+            </span>
+            <section className="flex flex-col">
+              {isInitialLoading && <span>Loading...</span>}
+              {isError && error instanceof Error && (
+                <span>{error.message}</span>
+              )}
+              {isSuccess && (
+                <>
+                  <div className="grid grid-cols-6 gap-6">
+                    {data?.pages.map((group: BlockCardData[], i) => (
+                      <Fragment key={i}>
+                        {group.map((bitmap) => (
+                          <BitmapCard
+                            key={bitmap.block_height}
+                            metadata={bitmap}
+                          />
+                        ))}
+                      </Fragment>
+                    ))}
+                  </div>
+                  <Button
+                    onClick={() => fetchNextPage()}
+                    disabled={!hasNextPage || isFetchingNextPage}
+                    variant="outline"
+                    className="mx-auto"
+                  >
+                    {isFetchingNextPage
+                      ? "Loading more..."
+                      : hasNextPage
+                      ? "Load More"
+                      : "Nothing more to load"}
+                  </Button>
+                </>
+              )}
+            </section>
           </div>
         </div>
-        <div className="col-span-3">
-          <span className="text-lg flex mb-4 text-muted-foreground">
-            Bitmaps ranking
-          </span>
-          <section className="flex flex-col">
-            {isInitialLoading && <span>Loading...</span>}
-            {isError && error instanceof Error && <span>{error.message}</span>}
-            {isSuccess && (
-              <>
-                <div className="grid grid-cols-6 gap-6">
-                  {data?.pages.map((group: BlockCardData[], i) => (
-                    <Fragment key={i}>
-                      {group.map((bitmap) => (
-                        <BitmapCard
-                          key={bitmap.block_height}
-                          metadata={bitmap}
-                        />
-                      ))}
-                    </Fragment>
-                  ))}
-                </div>
-                <Button
-                  onClick={() => fetchNextPage()}
-                  disabled={!hasNextPage || isFetchingNextPage}
-                  variant="outline"
-                  className="mx-auto"
-                >
-                  {isFetchingNextPage
-                    ? "Loading more..."
-                    : hasNextPage
-                    ? "Load More"
-                    : "Nothing more to load"}
-                </Button>
-              </>
-            )}
-          </section>
-        </div>
-      </div>
-    </main>
+      </main>
+    </>
   );
 }

@@ -3,13 +3,6 @@ import { BitmapBox } from "./bitmap-box";
 import Link from "next/link";
 
 export function BitmapCard({ metadata }: { metadata: BlockCardData }) {
-  let paramsWithRarity: ParamsWithRarity = {};
-  for (const [key, value] of Object.entries(metadata)) {
-    if (typeof value === "object" && value !== null) {
-      paramsWithRarity[key] = value;
-    }
-  }
-
   return (
     <div className="flex flex-col gap-1">
       <p className="text-muted-foreground text-sm flex justify-between">
@@ -24,7 +17,9 @@ export function BitmapCard({ metadata }: { metadata: BlockCardData }) {
           {metadata.block_height}
         </Link>
       </p>
-      <BitmapBox params={paramsWithRarity} />
+      <div className="grid grid-cols-4 gap-1">
+        <BitmapBox params={metadata} />
+      </div>
     </div>
   );
 }
