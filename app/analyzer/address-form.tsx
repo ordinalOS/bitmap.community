@@ -33,7 +33,7 @@ export function AddressForm({
   setBlockHeight,
   isLoading,
 }: {
-  setBlockHeight: Dispatch<SetStateAction<string>>;
+  setBlockHeight: Dispatch<SetStateAction<string | null>>;
   isLoading: boolean;
 }) {
   const searchParams = useSearchParams();

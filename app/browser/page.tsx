@@ -105,13 +105,14 @@ export default function Analyzer() {
               )}
               {isSuccess && (
                 <>
-                  <div className="grid grid-cols-6 gap-6">
+                  <div className="grid grid-cols-4 gap-6">
                     {data?.pages.map((group: BlockCardData[], i) => (
                       <Fragment key={i}>
-                        {group.map((bitmap) => (
+                        {group.map((bitmap, index) => (
                           <BitmapCard
                             key={bitmap.block_height}
                             metadata={bitmap}
+                            rank={index + 1}
                           />
                         ))}
                       </Fragment>

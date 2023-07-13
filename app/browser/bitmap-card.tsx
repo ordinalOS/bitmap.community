@@ -2,11 +2,17 @@ import { BlockCardData, ParamsWithRarity } from "@/types";
 import { BitmapBox } from "./bitmap-box";
 import Link from "next/link";
 
-export function BitmapCard({ metadata }: { metadata: BlockCardData }) {
+export function BitmapCard({
+  metadata,
+  rank,
+}: {
+  metadata: BlockCardData;
+  rank: number;
+}) {
   return (
     <div className="flex flex-col gap-1">
       <p className="text-muted-foreground text-sm flex justify-between">
-        <span className="text-primary inline-block">#{metadata.rank}</span>
+        <span className="text-primary inline-block">#{rank}</span>
         <Link
           href={{
             pathname: "/analyzer",
@@ -17,7 +23,7 @@ export function BitmapCard({ metadata }: { metadata: BlockCardData }) {
           {metadata.block_height}
         </Link>
       </p>
-      <div className="grid grid-cols-4 gap-1">
+      <div className="grid grid-cols-6 gap-1">
         <BitmapBox params={metadata} />
       </div>
     </div>

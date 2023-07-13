@@ -12,7 +12,7 @@ export function MetadataTable({ metaData }: { metaData: BlockCardData }) {
   return (
     <div className="flex flex-col">
       <div className="flex justify-between items-center mb-4 mt-8 gap-8">
-        <h2 className="text-xl min-w-fit ">[ Block Metadata ]</h2>
+        <h2 className="text-xl min-w-fit ">[ All Metadata ]</h2>
         <Input
           value={search}
           onChange={(e) => setSearch(e.target.value)}
@@ -41,7 +41,11 @@ export function MetadataTable({ metaData }: { metaData: BlockCardData }) {
                   </span>
                 )}
                 <p className="text-zinc-50 break-all max-w-lg ml-auto">
-                  {String(paramValue)}
+                  {typeof paramValue === "number"
+                    ? parseFloat(paramValue.toFixed(2))
+                        .toLocaleString("FR-fr")
+                        .replace(",", ".")
+                    : paramValue}
                 </p>
               </li>
             );
