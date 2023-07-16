@@ -34,17 +34,24 @@ export type BlockCardData = {
   datetime: string;
   blocktributes: BlockTributes;
   stats: BlockStats;
+  miner_message: MinerMessage;
 };
 
 export type BlockTributes = {
   [key in BlockTributesFields]: boolean;
 };
 
+export type MinerMessage = {
+  message: string;
+  description: string;
+  transaction_id: string;
+};
+
 export type BlockStats = {
   [key in BlockStatsFields]: DataWithRarity;
 };
 export type DataWithRarity = {
-  value: number;
+  value: number | null;
   pr: number;
 };
 

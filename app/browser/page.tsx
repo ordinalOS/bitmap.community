@@ -12,6 +12,16 @@ const traits = [
   "total_weight",
   "avg_fee_rate",
   "avg_transaction_size",
+  "transaction_count",
+  "total_fee",
+  "total_rewards",
+  "max_fee",
+  "max_fee_rate",
+  "max_transaction_size",
+  "segwit_total_size",
+  "segwit_total_weight",
+  "utxo_increase_actual",
+  "utxo_size_increase_actual",
 ];
 
 export default function Analyzer() {
@@ -65,9 +75,9 @@ export default function Analyzer() {
   return (
     <>
       <Navbar />
-      <main className="flex min-h-screen flex-col px-4 py-8 max-w-4xl mx-auto">
+      <main className="flex min-h-screen flex-col px-4 py-8 max-w-5xl mx-auto">
         <div className="grid grid-cols-4 relative gap-6">
-          <div className="col-span-4">
+          <div className="col-span-5">
             <div className="flex gap-1 items-baseline">
               <div className="inline-flex bg-orange-500 w-4 h-4"></div>
               <div className="inline-flex bg-orange-400 w-4 h-4"></div>
@@ -75,12 +85,11 @@ export default function Analyzer() {
             </div>
             <h1 className="text-4xl font-semibold mb-">Bitmap browser</h1>
           </div>
-
-          <div>
+          <div className="col-span-1">
             <span className="text-lg flex mb-4 text-muted-foreground">
               Traits
             </span>
-            <div className="flex flex-col border-l">
+            <div className="flex flex-col border-l ">
               {traits.map((trait) => (
                 <Button
                   variant={selectedTrait === trait ? "default" : "ghost"}
