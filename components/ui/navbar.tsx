@@ -1,10 +1,16 @@
 import Link from "next/link";
 import { Button } from "./button";
-import { Boxes, Globe } from "lucide-react";
+import { Boxes, Globe, Home } from "lucide-react";
 
 export function Navbar() {
   return (
     <div className="flex gap-10 mt-10 mx-auto max-w-4xl justify-center">
+      <Link href="/">
+        <Button variant="link" className="text-base px-0  ">
+          <Home className="h-5 w-5 mr-2" />
+          Home
+        </Button>
+      </Link>
       <Link href="/analyzer">
         <Button variant="link" className="text-base px-0  ">
           <Boxes className="h-5 w-5 mr-2" />

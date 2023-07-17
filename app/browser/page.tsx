@@ -7,6 +7,7 @@ import { BlockCardData } from "@/types";
 import { Navbar } from "@/components/ui/navbar";
 
 const traits = [
+  "rarity_rank",
   "total_out",
   "total_size",
   "total_weight",
@@ -121,7 +122,7 @@ export default function Analyzer() {
                           <BitmapCard
                             key={bitmap.block_height}
                             metadata={bitmap}
-                            rank={index + 1}
+                            rank={50 * i + index + 1}
                           />
                         ))}
                       </Fragment>
@@ -131,7 +132,7 @@ export default function Analyzer() {
                     onClick={() => fetchNextPage()}
                     disabled={!hasNextPage || isFetchingNextPage}
                     variant="outline"
-                    className="mx-auto"
+                    className="mx-auto mt-4"
                   >
                     {isFetchingNextPage
                       ? "Loading more..."

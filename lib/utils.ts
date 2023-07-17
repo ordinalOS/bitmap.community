@@ -60,3 +60,6 @@ export const flattenObject = (obj: any) => {
 
   return flattened;
 };
+
+export const numberFormatter = (number: number) =>
+  parseFloat(number.toFixed(2)).toLocaleString("FR-fr").replace(",", ".");

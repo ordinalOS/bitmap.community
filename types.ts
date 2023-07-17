@@ -35,6 +35,7 @@ export type BlockCardData = {
   blocktributes: BlockTributes;
   stats: BlockStats;
   miner_message: MinerMessage;
+  rarity: Rarity;
 };
 
 export type BlockTributes = {
@@ -53,6 +54,10 @@ export type BlockStats = {
 export type DataWithRarity = {
   value: number | null;
   pr: number;
+};
+export type Rarity = {
+  rank: number;
+  score: number;
 };
 
 export type ParamsWithRarity = {

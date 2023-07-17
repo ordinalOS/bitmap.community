@@ -8,7 +8,14 @@ import { BitmapBox } from "../browser/bitmap-box";
 import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { BadgeDollarSign, Banknote, Coins } from "lucide-react";
+import { BadgeDollarSign, Banknote, Coins, Info } from "lucide-react";
+import { numberFormatter } from "@/lib/utils";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 export default function Analyzer() {
   const [blockHeight, setBlockHeight] = useState<string | null>(null);
@@ -43,9 +50,45 @@ export default function Analyzer() {
           <div className="grid gap-10">
             <div className="grid grid-cols-2 gap-6 my-10">
               <div className="flex flex-col gap-6 col-span-1">
+                <div className="flex flex-col gap-2 relative">
+                  <h2 className="text-orange-400 text-muted-foreground">
+                    [ Rarity Score ]
+                  </h2>
+                  <div className="flex flex-col">
+                    <div className="flex gap-2 items-start">
+                      <p className="text-5xl leading-none">
+                        {numberFormatter(data[0].rarity.rank)}
+                      </p>
+                      <TooltipProvider>
+                        <Tooltip>
+                          <TooltipTrigger>
+                            <Info className="h-4 w-4" />
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <div className="max-w-xs flex flex-col gap-4">
+                              <p className="text-lg leading-none">
+                                [Rarity Score for a Bitmap Trait] = 1 / (1 -
+                                [Percent Rank])
+                              </p>
+                              <p className="text-muted-foreground">
+                                We are calculating the total Rarity Score for a
+                                Bitmap as the sum of Rarity Scores for the
+                                following trait values: total_out, total_size,
+                                transaction_count and avg_fee_rate.
+                              </p>
+                            </div>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
+                    </div>
+                    <p className="text-muted-foreground text-sm">
+                      Score {data[0].rarity.score}
+                    </p>
+                  </div>
+                </div>
                 <div className="flex flex-col gap-2">
                   <h2 className="text-orange-400 text-muted-foreground">
-                    [ Main traits ]
+                    [ Main Traits ]
                   </h2>
                   <div className="flex gap-2 flex-wrap">
                     {Object.entries(data[0].blocktributes)
@@ -68,7 +111,7 @@ export default function Analyzer() {
             </div>
             {data[0].miner_message && (
               <div className="flex flex-col gap-2">
-                <p className=" text-muted-foreground text-orange-400">
+                <p className="text-muted-foreground text-orange-400">
                   [ Miners message ]
                 </p>
                 <p>{data[0].miner_message.message}</p>

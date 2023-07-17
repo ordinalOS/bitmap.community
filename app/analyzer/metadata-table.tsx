@@ -1,12 +1,14 @@
 "use client";
 
 import { Input } from "@/components/ui/input";
+import { numberFormatter } from "@/lib/utils";
 import { BlockCardData, DataWithRarity, MetaData } from "@/types";
 import { useState } from "react";
 
 export function MetadataTable({ metaData }: { metaData: BlockCardData }) {
   const [search, setSearch] = useState("");
-  const { blocktributes, stats, miner_message, ...blockMetadata } = metaData;
+  const { blocktributes, stats, miner_message, rarity, ...blockMetadata } =
+    metaData;
 
   return (
     <div className="flex flex-col">
@@ -55,8 +57,14 @@ const MetadataRow = ({
 }) => {
   const paramValue = value === null ? "-" : value;
 
-  const formattedRarity =
-    typeof rarity !== "undefined" ? Math.trunc(rarity * 100) % 100 : null;
+  const getRarity = (rarity: number | undefined) => {
+    if (rarity === undefined) return null;
+    else if (rarity === 0) return 99;
+    else if (rarity === 1) return 1;
+    else return Math.trunc((1 - rarity) * 100);
+  };
+
+  const formattedRarity = getRarity(rarity);
 
   return (
     <li className="flex items-baseline py-1 max-w-full">
@@ -65,14 +73,12 @@ const MetadataRow = ({
       </div>
       {formattedRarity !== null && (
         <span className={`text-orange-400 text-xs ml-4`}>
-          TOP {formattedRarity === 0 ? 1 + "%" : formattedRarity + "%"}
+          TOP {formattedRarity + "%"}
         </span>
       )}
       <p className="text-zinc-50 break-all max-w-lg ml-auto">
         {typeof paramValue === "number"
-          ? parseFloat(paramValue.toFixed(2))
-              .toLocaleString("FR-fr")
-              .replace(",", ".")
+          ? numberFormatter(paramValue)
           : paramValue}
       </p>
     </li>
