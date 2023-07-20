@@ -69,8 +69,8 @@ export default function Analyzer() {
         {isSuccess &&
           (data && data.length > 0 ? (
             <div className="grid gap-10">
-              <div className="grid grid-cols-2 gap-6 my-10">
-                <div className="flex flex-col gap-6 col-span-1">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-10">
+                <div className="flex flex-col gap-6 col-span-1 order-2 md:order-1">
                   <div className="flex flex-col gap-2 relative">
                     <h2 className="text-orange-400 text-muted-foreground">
                       [ Rarity Score ]
@@ -147,7 +147,7 @@ export default function Analyzer() {
                     </div>
                   </div>
                 </div>
-                <div className="grid gap-4">
+                <div className="grid gap-4 order-1 md:order-2">
                   <div className="grid grid-cols-6 gap-1 h-fit">
                     <BitmapBox params={data[0]} />
                   </div>

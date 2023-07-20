@@ -79,12 +79,12 @@ export const MetadataRow = ({
   ) : null;
 
   return (
-    <li className="flex items-center py-1 max-w-full">
+    <li className="flex flex-col md:flex-row md:items-center py-1 max-w-full">
       <div>
-        <span className="">{title}</span>
+        <span className="text-muted-foreground">{title}</span>
+        {formattedRarity && formattedRarity}
       </div>
-      {formattedRarity && formattedRarity}
-      <p className="text-zinc-50 break-all max-w-lg ml-auto">
+      <p className="text-zinc-50 break-all max-w-lg md:ml-auto">
         {typeof paramValue === "number"
           ? numberFormatter(paramValue)
           : paramValue}
