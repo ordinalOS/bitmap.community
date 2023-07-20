@@ -1,5 +1,6 @@
 "use client";
 
+import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { numberFormatter } from "@/lib/utils";
 import { BlockCardData, DataWithRarity, MetaData } from "@/types";
@@ -46,6 +47,13 @@ export function MetadataTable({ metaData }: { metaData: BlockCardData }) {
   );
 }
 
+const getRarity = (rarity: number | undefined) => {
+  if (rarity === undefined || rarity === null) return null;
+  else if (rarity === 0) return 99;
+  else if (rarity === 1) return 1;
+  else return Math.trunc((1 - rarity) * 100);
+};
+
 export const MetadataRow = ({
   title,
   value,
@@ -57,25 +65,25 @@ export const MetadataRow = ({
 }) => {
   const paramValue = value === null ? "-" : value;
 
-  const getRarity = (rarity: number | undefined) => {
-    if (rarity === undefined) return null;
-    else if (rarity === 0) return 99;
-    else if (rarity === 1) return 1;
-    else return Math.trunc((1 - rarity) * 100);
-  };
+  const calculatedRarity = getRarity(rarity);
+  console.log(title, calculatedRarity);
 
-  const formattedRarity = getRarity(rarity);
+  const formattedRarity = calculatedRarity ? (
+    calculatedRarity < 50 ? (
+      <span className={`text-orange-400 text-xs ml-4`}>
+        TOP {calculatedRarity + "%"}
+      </span>
+    ) : (
+      <span className="text-muted-foreground text-xs ml-4 px-1">common</span>
+    )
+  ) : null;
 
   return (
-    <li className="flex items-baseline py-1 max-w-full">
+    <li className="flex items-center py-1 max-w-full">
       <div>
         <span className="">{title}</span>
       </div>
-      {formattedRarity !== null && (
-        <span className={`text-orange-400 text-xs ml-4`}>
-          TOP {formattedRarity + "%"}
-        </span>
-      )}
+      {formattedRarity && formattedRarity}
       <p className="text-zinc-50 break-all max-w-lg ml-auto">
         {typeof paramValue === "number"
           ? numberFormatter(paramValue)

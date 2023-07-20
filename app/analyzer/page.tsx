@@ -117,6 +117,7 @@ export default function Analyzer() {
                           key={trait}
                           title={trait}
                           value={data[0].stats[trait].value}
+                          rarity={data[0].stats[trait].pr}
                         />
                       ))}
                     </div>
