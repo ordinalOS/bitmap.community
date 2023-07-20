@@ -3,17 +3,36 @@ export type MetaData = {
 }[];
 
 export type BlockStatsFields =
+  | "size"
+  | "transaction_count"
+  | "total_fee"
+  | "total_rewards"
+  | "mint_rewards"
+  | "stripped_size"
+  | "weight"
+  | "avg_fee"
   | "avg_fee_rate"
-  | "avg_transaction_size"
+  | "avg_tx_size"
   | "max_fee"
   | "max_fee_rate"
   | "max_transaction_size"
-  | "total_fee"
+  | "median_fee"
+  | "median_transaction_size"
+  | "min_fee"
+  | "min_fee_rate"
+  | "min_transaction_size"
+  | "ins"
+  | "outs"
+  | "subsidy"
+  | "segwit_total_size"
+  | "segwit_total_weight"
+  | "segwit_transaction_count"
   | "total_out"
-  | "total_size"
   | "total_weight"
-  | "transaction_count"
-  | "utxo_increase_actual";
+  | "utxo_increase"
+  | "utxo_size_increase"
+  | "utxo_increase_actual"
+  | "utxo_size_increase_actual";
 
 export type BlockTributesFields =
   | "is_1_tx"

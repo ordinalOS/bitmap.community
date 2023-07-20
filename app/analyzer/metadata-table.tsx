@@ -46,7 +46,7 @@ export function MetadataTable({ metaData }: { metaData: BlockCardData }) {
   );
 }
 
-const MetadataRow = ({
+export const MetadataRow = ({
   title,
   value,
   rarity,
@@ -69,7 +69,7 @@ const MetadataRow = ({
   return (
     <li className="flex items-baseline py-1 max-w-full">
       <div>
-        <span className="text-muted-foreground">{title}</span>
+        <span className="">{title}</span>
       </div>
       {formattedRarity !== null && (
         <span className={`text-orange-400 text-xs ml-4`}>

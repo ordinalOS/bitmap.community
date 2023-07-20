@@ -26,7 +26,7 @@ const traits = [
 ];
 
 export default function Analyzer() {
-  const [selectedTrait, setSelectedTrait] = useState<string>("total_out");
+  const [selectedTrait, setSelectedTrait] = useState<string>("rarity_rank");
 
   const LIMIT = 50;
 
@@ -39,7 +39,9 @@ export default function Analyzer() {
           "&offset=" +
           offset +
           "&limit=" +
-          LIMIT
+          LIMIT +
+          "&api-key=" +
+          process.env.NEXT_PUBLIC_API_KEY || ""
       );
       if (res.status === 404) {
         throw new Error("Couldn't fetch the bitmaps, try again later");
