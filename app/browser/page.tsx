@@ -86,7 +86,7 @@ export default function Analyzer() {
               <div className="inline-flex bg-orange-400 w-4 h-4"></div>
               <div className="inline-flex bg-orange-300 w-4 h-4"></div>
             </div>
-            <h1 className="text-4xl font-semibold mb-">Bitmap browser</h1>
+            <h1 className="text-4xl font-semibold mb-">Bitmap Browser</h1>
           </div>
           <div className="col-span-4 md:col-span-1">
             <span className="text-lg flex mb-4 text-muted-foreground">

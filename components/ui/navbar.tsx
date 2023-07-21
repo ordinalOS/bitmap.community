@@ -20,7 +20,7 @@ export function Navbar() {
           className="text-base px-0 flex flex-col md:flex-row"
         >
           <Boxes className="h-5 w-5 md:mr-2" />
-          Block analyzer
+          Analyzer
         </Button>
       </Link>
       <Link href="/browser">
@@ -29,7 +29,7 @@ export function Navbar() {
           className="text-base px-0 flex flex-col md:flex-row"
         >
           <Globe className="h-5 w-5 md:mr-2" />
-          Bitmap Browser
+          Browser
         </Button>
       </Link>
     </div>

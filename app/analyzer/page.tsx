@@ -45,7 +45,7 @@ export default function Analyzer() {
           process.env.NEXT_PUBLIC_API_KEY || ""
       );
       if (!response.ok) {
-        throw new Error("Couldn't fetch the bitmaps, try again later");
+        throw new Error("Couldn't fetch bitmap data, please try again.");
       }
       return response.json();
     },
@@ -62,7 +62,7 @@ export default function Analyzer() {
           <div className="inline-flex bg-orange-400 w-4 h-4"></div>
           <div className="inline-flex bg-orange-300 w-4 h-4"></div>
         </div>
-        <h1 className="text-4xl font-semibold mb-6 mr-2 ">Bitmap analyzer</h1>
+        <h1 className="text-4xl font-semibold mb-6 mr-2 ">Bitmap Analyzer</h1>
         <AddressForm setBlockHeight={setBlockHeight} isLoading={isFetching} />
         {isError && <p>Something went wrong...</p>}
         {isFetching && <p>Loading...</p>}
@@ -73,7 +73,7 @@ export default function Analyzer() {
                 <div className="flex flex-col gap-6 col-span-1 order-2 md:order-1">
                   <div className="flex flex-col gap-2 relative">
                     <h2 className="text-orange-400 text-muted-foreground">
-                      [ Rarity Score ]
+                      [ Rarity Rank ]
                     </h2>
                     <div className="flex flex-col">
                       <div className="flex gap-2 items-start">
@@ -92,10 +92,30 @@ export default function Analyzer() {
                                   [Percent Rank])
                                 </p>
                                 <p className="text-muted-foreground">
-                                  We are calculating the total Rarity Score for
-                                  a Bitmap as the sum of Rarity Scores for the
-                                  following trait values: total_out, total_size,
-                                  transaction_count and avg_fee_rate.
+                                  Total rarity score for a Bitmap is the sum 
+                                  of rarity scores for the following traits:
+                                  total_out, total_size, transaction_count
+                                  and avg_fee_rate plus additional bonuses for 
+                                  blocktributes.
+                                </p>
+                                <p className="text-muted-foreground">
+                                  Blocktribute bonuses differ by it's on-chain rarity.
+                                  The below blocktributes are being used in the rarity calculation
+                                  (ordered most valued to least valued):<br></br>
+                                  <ol type="1">
+                                    <li>1. epic</li>
+                                    <li>2. rare</li>
+                                    <li>3. patoshi</li>
+                                    <li>4. miner message</li>
+                                    <li>5. sub 100</li>
+                                    <li>6. sub 10k</li>
+                                    <li>7. billionaire</li>
+                                    <li>8. 1 transaction</li>
+                                    <li>9. sub 100k</li>
+                                  </ol>
+                                  <br></br>
+                                  To include punks or other missing blocktributes in the rarity calculation we need your help!
+                                  Submit the missing blocktribute to the form below to have it included.
                                 </p>
                               </div>
                             </TooltipContent>
@@ -124,10 +144,10 @@ export default function Analyzer() {
                   </div>
                   <div className="flex flex-col gap-2">
                     <h2 className="text-orange-400 text-muted-foreground">
-                      [ Block Tributes ]
-                      <Link href="https://docs.google.com/forms/d/1lWmGm6-BXoDUNPsvR6lncPnPzXoFuP61Kupn9dmD8FU/prefill">
+                      [ Blocktributes ]
+                      <Link href="https://forms.gle/vpwUwo5hGtsuMdNVA">
                         <Button variant="link">
-                          Submit new tributes{" "}
+                          Submit blocktributes{" "}
                           <ExternalLink className="h-3 w-3 ml-2" />
                         </Button>
                       </Link>
@@ -156,7 +176,7 @@ export default function Analyzer() {
               {data[0].miner_message && (
                 <div className="flex flex-col gap-2">
                   <p className="text-muted-foreground text-orange-400">
-                    [ Miners message ]
+                    [ Miner messages ]
                   </p>
                   <p>{data[0].miner_message.message}</p>
                   <p className="text-sm text-muted-foreground">
@@ -167,7 +187,7 @@ export default function Analyzer() {
               <MetadataTable metaData={data[0]} />
             </div>
           ) : (
-            <p>No block found. Try another block!</p>
+            <p>No data found. Try another block!</p>
           ))}
       </main>
     </>

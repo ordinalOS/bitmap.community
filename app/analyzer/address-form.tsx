@@ -66,7 +66,7 @@ export function AddressForm({
           render={({ field }) => (
             <FormItem>
               <FormLabel className="text-base">
-                &gt;_ Paste the block number below
+                &gt;_ Enter a block number below
               </FormLabel>
               <FormControl>
                 <div className="flex w-full">
