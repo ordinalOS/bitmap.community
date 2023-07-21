@@ -99,7 +99,7 @@ export default function Analyzer() {
                                   blocktributes.
                                 </p>
                                 <p className="text-muted-foreground">
-                                  Blocktribute bonuses differ by it's on-chain rarity.
+                                  Blocktribute bonuses differ by it&apos;s on-chain rarity.
                                   The below blocktributes are being used in the rarity calculation
                                   (ordered most valued to least valued):<br></br>
                                   <ol type="1">
