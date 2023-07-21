@@ -51,7 +51,7 @@ const getRarity = (rarity: number | undefined) => {
   if (rarity === undefined || rarity === null) return null;
   else if (rarity === 0) return 99;
   else if (rarity === 1) return 1;
-  else return Math.trunc((1 - rarity) * 100);
+  else return Math.ceil((1 - rarity) * 100);
 };
 
 export const MetadataRow = ({
