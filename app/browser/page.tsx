@@ -108,7 +108,7 @@ export default function Analyzer() {
           </div>
           <div className="col-span-4 md:col-span-3">
             <span className="text-lg flex mb-4 text-muted-foreground">
-              Bitmaps ranking
+              Ordered by {selectedTrait}
             </span>
             <section className="flex flex-col">
               {isInitialLoading && <span>Loading...</span>}

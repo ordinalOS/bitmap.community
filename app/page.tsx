@@ -11,7 +11,7 @@ export default async function Analyzer() {
           <div className="w-10 h-10 bg-[#FF4200] mb-4"></div>
           <h1 className="text-5xl font-bold">Bitmap.Community</h1>
           <span className="text-muted-foreground mb-6 text-lg max-w-prose">
-            Built for bitmapers, by bitmapers
+            Built for bitmappers, by bitmappers
           </span>
           <div className="flex gap-10 mt-10">
             <Link href="/analyzer">

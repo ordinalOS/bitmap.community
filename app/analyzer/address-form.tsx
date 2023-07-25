@@ -78,7 +78,7 @@ export function AddressForm({
                         Checking...
                       </>
                     ) : (
-                      "Check metadata"
+                      "Check traits"
                     )}
                   </Button>
                 </div>

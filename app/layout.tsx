@@ -9,12 +9,12 @@ const inter = Inconsolata({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "bitmap.community",
   description:
-    "A list of valuable instruments to help you navigate through the Bitmap ecosystem",
+    "Tools for bitmappers, by bitmappers.",
   openGraph: {
     type: "website",
     title: "bitmap.community",
     description:
-      "A list of valuable instruments to help you navigate through the Bitmap ecosystem",
+      "Tools for bitmappers, by bitmappers.",
   },
   twitter: {
     title: "bitmap.community",

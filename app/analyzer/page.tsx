@@ -114,8 +114,11 @@ export default function Analyzer() {
                                     <li>9. sub 100k</li>
                                   </ol>
                                   <br></br>
-                                  To include punks or other missing blocktributes in the rarity calculation we need your help!
-                                  Submit the missing blocktribute to the form below to have it included.
+                                  To include punks or other missing blocktributes in the rarity calculation we need your help.
+                                  Submit missing blocktributes to the form below.  
+                                  <br></br>
+                                  <br></br>
+                                  <strong>NOTE: Our rarity algorithm is experimental and subject to reweighting.</strong> Please reach out to @nft_wizop on twitter with any questions or concerns.
                                 </p>
                               </div>
                             </TooltipContent>
