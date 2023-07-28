@@ -5,6 +5,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { BitmapCard } from "./bitmap-card";
 import { BlockCardData } from "@/types";
 import { Navbar } from "@/components/ui/navbar";
+import { HeatMap } from "@/components/ui/heatmap";
 
 const traits = [
   "rarity_rank",
@@ -106,10 +107,13 @@ export default function Analyzer() {
               ))}
             </div>
           </div>
-          <div className="col-span-4 md:col-span-3">
-            <span className="text-lg flex mb-4 text-muted-foreground">
-              Ordered by {selectedTrait}
-            </span>
+          <div className="col-span-4 md:col-span-3 mb-4">
+            <div className="flex justify-between items-start">
+              <span className="text-lg flex text-muted-foreground">
+                Ordered by {selectedTrait}
+              </span>
+              <HeatMap />
+            </div>
             <section className="flex flex-col">
               {isInitialLoading && <span>Loading...</span>}
               {isError && error instanceof Error && (

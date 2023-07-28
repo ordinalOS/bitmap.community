@@ -25,6 +25,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import Link from "next/link";
+import { HeatMap } from "@/components/ui/heatmap";
 
 const mainTraits: BlockStatsFields[] = [
   "total_out",
@@ -191,10 +192,11 @@ export default function Analyzer() {
                     </div>
                   </div>
                 </div>
-                <div className="grid gap-4 order-1 md:order-2">
+                <div className="flex flex-col order-1 md:order-2 gap-6">
                   <div className="grid grid-cols-6 gap-1 h-fit">
                     <BitmapBox params={data[0]} />
                   </div>
+                  <HeatMap />
                 </div>
               </div>
               {data[0].miner_message && (

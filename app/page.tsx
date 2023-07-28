@@ -9,7 +9,7 @@ export default async function Analyzer() {
       <div className="flex flex-col justify-center px-6 md:px-24 py-10">
         <section className="my-auto">
           <div className="w-10 h-10 bg-[#FF4200] mb-4"></div>
-          <h1 className="text-5xl font-bold">Bitmap.Community</h1>
+          <h1 className="text-4xl md:text-5xl font-bold">Bitmap.Community</h1>
           <span className="text-muted-foreground mb-6 text-lg max-w-prose">
             Built for bitmappers, by bitmappers
           </span>
