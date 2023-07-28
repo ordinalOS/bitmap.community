@@ -26,7 +26,7 @@ const traits = [
   "utxo_size_increase_actual",
 ];
 
-export default function Analyzer() {
+export default function Browser() {
   const [selectedTrait, setSelectedTrait] = useState<string>("rarity_rank");
 
   const LIMIT = 50;
@@ -59,12 +59,9 @@ export default function Analyzer() {
     error,
     fetchNextPage,
     hasNextPage,
-    isFetching,
     isFetchingNextPage,
-    status,
     isInitialLoading,
     isError,
-    isLoading,
     isSuccess,
   } = useInfiniteQuery({
     queryKey: ["bitmapsByTrait", selectedTrait],
@@ -73,8 +70,6 @@ export default function Analyzer() {
       return lastPage.length === LIMIT ? pages.length : undefined;
     },
   });
-
-  console.log(data);
 
   return (
     <>

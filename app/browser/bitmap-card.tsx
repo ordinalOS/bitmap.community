@@ -1,4 +1,4 @@
-import { BlockCardData, ParamsWithRarity } from "@/types";
+import { BlockCardData } from "@/types";
 import { BitmapBox } from "./bitmap-box";
 import Link from "next/link";
 
@@ -14,10 +14,7 @@ export function BitmapCard({
       <p className="text-muted-foreground text-sm flex justify-between">
         <span className="text-primary inline-block">#{rank}</span>
         <Link
-          href={{
-            pathname: "/analyzer",
-            query: { address: metadata.block_height },
-          }}
+          href={`/analyzer/${metadata.block_height}`}
           className="hover:text-orange-500 transition-colors"
         >
           {metadata.block_height}

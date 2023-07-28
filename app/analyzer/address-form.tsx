@@ -6,7 +6,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -14,9 +13,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Dispatch, SetStateAction, useEffect } from "react";
-import { useSearchParams } from "next/navigation";
-import { Loader2 } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
   blockHeight: z
@@ -29,32 +26,18 @@ const formSchema = z.object({
     }),
 });
 
-export function AddressForm({
-  setBlockHeight,
-  isLoading,
-}: {
-  setBlockHeight: Dispatch<SetStateAction<string | null>>;
-  isLoading: boolean;
-}) {
-  const searchParams = useSearchParams();
+export function AddressForm({ searchParam = "" }: { searchParam?: string }) {
+  const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      blockHeight: "",
+      blockHeight: searchParam,
     },
   });
 
-  useEffect(() => {
-    const address = searchParams.get("address");
-    if (address) {
-      form.setValue("blockHeight", address);
-      form.handleSubmit(onSubmit)();
-    }
-  }, [searchParams]);
-
-  async function onSubmit(values: z.infer<typeof formSchema>) {
-    setBlockHeight(values.blockHeight);
+  function onSubmit(values: z.infer<typeof formSchema>) {
+    router.push(`/analyzer/${values.blockHeight}`);
   }
 
   return (
@@ -72,14 +55,7 @@ export function AddressForm({
                 <div className="flex w-full">
                   <Input placeholder="Example 796983" {...field} />
                   <Button type="submit" className="min-w-fit">
-                    {isLoading ? (
-                      <>
-                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                        Checking...
-                      </>
-                    ) : (
-                      "Check traits"
-                    )}
+                    Check traits
                   </Button>
                 </div>
               </FormControl>

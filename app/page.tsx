@@ -3,7 +3,7 @@ import { Boxes, Globe, Github } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-export default async function Analyzer() {
+export default async function Home() {
   return (
     <main className="relative grid md:grid-cols-2 min-h-screen mx-auto">
       <div className="flex flex-col justify-center px-6 md:px-24 py-10">
