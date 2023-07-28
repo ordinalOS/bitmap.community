@@ -6,6 +6,13 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { colorSwitch } from "@/lib/utils";
+import { useRef, useState } from "react";
+import { useOnClickOutside, useScreen } from "usehooks-ts";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 
 export function BitmapBox({ params }: { params: BlockCardData }) {
   const { stats, blocktributes } = params;
@@ -29,7 +36,8 @@ const BitmapInnerBox = ({
   value: DataWithRarity;
   bg: string;
 }) => {
-  return (
+  const screen = window.innerWidth;
+  return screen > 768 ? (
     <TooltipProvider delayDuration={0}>
       <Tooltip>
         <TooltipTrigger>
@@ -45,5 +53,19 @@ const BitmapInnerBox = ({
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>
+  ) : (
+    <Popover>
+      <PopoverTrigger>
+        <div
+          className={`text-xs aspect-square hover:border `}
+          style={{ backgroundColor: bg }}
+        ></div>
+      </PopoverTrigger>
+      <PopoverContent className="w-fit">
+        <p className="text-center">
+          {param}: {value.value}
+        </p>
+      </PopoverContent>
+    </Popover>
   );
 };

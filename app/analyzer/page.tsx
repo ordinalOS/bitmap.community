@@ -73,16 +73,26 @@ export default function Analyzer() {
                 <div className="flex flex-col gap-6 col-span-1 order-2 md:order-1">
                   <div className="flex flex-col gap-2 relative">
                     <h2 className="text-orange-400 text-muted-foreground">
+                      [ Block Number ]
+                    </h2>
+                    <div className="flex gap-2 items-start">
+                      <p className="text-5xl leading-none">
+                        {numberFormatter(data[0].block_height)}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex flex-col gap-2 relative">
+                    <h2 className="text-orange-400 text-muted-foreground">
                       [ Rarity Rank ]
                     </h2>
                     <div className="flex flex-col">
-                      <div className="flex gap-2 items-start">
-                        <p className="text-5xl leading-none">
+                      <div className="flex gap-2 items-start relative w-fit">
+                        <p className="text-3xl leading-none">
                           {numberFormatter(data[0].rarity.rank)}
                         </p>
                         <TooltipProvider>
                           <Tooltip>
-                            <TooltipTrigger>
+                            <TooltipTrigger className="absolute top-1 -right-5">
                               <Info className="h-4 w-4" />
                             </TooltipTrigger>
                             <TooltipContent>
@@ -92,16 +102,17 @@ export default function Analyzer() {
                                   [Percent Rank])
                                 </p>
                                 <p className="text-muted-foreground">
-                                  Total rarity score for a Bitmap is the sum 
-                                  of rarity scores for the following traits:
-                                  total_out, total_size, transaction_count
-                                  and avg_fee_rate plus additional bonuses for 
+                                  Total rarity score for a Bitmap is the sum of
+                                  rarity scores for the following traits:
+                                  total_out, total_size, transaction_count and
+                                  avg_fee_rate plus additional bonuses for
                                   blocktributes.
                                 </p>
                                 <p className="text-muted-foreground">
-                                  Blocktribute bonuses differ by it&apos;s on-chain rarity.
-                                  The below blocktributes are being used in the rarity calculation
-                                  (ordered most valued to least valued):<br></br>
+                                  Blocktribute bonuses differ by it&apos;s
+                                  on-chain rarity. The below blocktributes are
+                                  being used in the rarity calculation (ordered
+                                  most valued to least valued):<br></br>
                                   <ol type="1">
                                     <li>1. epic</li>
                                     <li>2. rare</li>
@@ -114,11 +125,18 @@ export default function Analyzer() {
                                     <li>9. sub 100k</li>
                                   </ol>
                                   <br></br>
-                                  To include punks or other missing blocktributes in the rarity calculation we need your help.
-                                  Submit missing blocktributes to the form below.  
+                                  To include punks or other missing
+                                  blocktributes in the rarity calculation we
+                                  need your help. Submit missing blocktributes
+                                  to the form below.
                                   <br></br>
                                   <br></br>
-                                  <strong>NOTE: Our rarity algorithm is experimental and subject to reweighting.</strong> Please reach out to @nft_wizop on twitter with any questions or concerns.
+                                  <strong>
+                                    NOTE: Our rarity algorithm is experimental
+                                    and subject to reweighting.
+                                  </strong>{" "}
+                                  Please reach out to @nft_wizop on twitter with
+                                  any questions or concerns.
                                 </p>
                               </div>
                             </TooltipContent>
@@ -148,7 +166,10 @@ export default function Analyzer() {
                   <div className="flex flex-col gap-2">
                     <h2 className="text-orange-400 text-muted-foreground">
                       [ Blocktributes ]
-                      <Link href="https://forms.gle/vpwUwo5hGtsuMdNVA">
+                      <Link
+                        href="https://forms.gle/vpwUwo5hGtsuMdNVA"
+                        target="_blank"
+                      >
                         <Button variant="link">
                           Submit blocktributes{" "}
                           <ExternalLink className="h-3 w-3 ml-2" />
