@@ -108,7 +108,7 @@ export default function Analyzer() {
             </div>
           </div>
           <div className="col-span-4 md:col-span-3 mb-4">
-            <div className="flex justify-between items-start">
+            <div className="flex flex-col md:flex-row justify-between md:items-start mb-4">
               <span className="text-lg flex text-muted-foreground">
                 Ordered by {selectedTrait}
               </span>
