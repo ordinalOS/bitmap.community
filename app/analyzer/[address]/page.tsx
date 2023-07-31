@@ -26,7 +26,7 @@ const mainTraits: BlockStatsFields[] = [
 const fetchBitmaps = async (blockHeight: string) => {
   try {
     const res = await fetch(
-      "http://api.bitmap.community/api/v1/rarity/" +
+      "https://api.bitmap.community/api/v1/rarity/" +
         blockHeight +
         "?api-key=" +
         process.env.NEXT_PUBLIC_API_KEY || "",

@@ -23,7 +23,7 @@ const links = [
   },
   {
     name: "Gitbook",
-    href: "https://app.gitbook.com/o/x4BVtImzqpNmyiJDdjSE/s/A8tuiCkg1G9IijG4Xobm/",
+    href: "https://docs.bitmap.community",
     target_blank: true,
     icon: <Book className="h-5 w-5 md:mr-2" />,
   },
