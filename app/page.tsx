@@ -26,7 +26,7 @@ export default async function Home() {
                 Browser
               </Button>
             </Link>
-            <Link href="https://docs.bitmap.community">
+            <Link href="https://docs.bitmap.community" target="_blank">
               <Button variant="link" className="text-base px-0">
                 <Book className="h-5 w-5 mr-2" />
                 Gitbook
