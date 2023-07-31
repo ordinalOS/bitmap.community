@@ -24,6 +24,26 @@ const traits = [
   "segwit_total_weight",
   "utxo_increase_actual",
   "utxo_size_increase_actual",
+  "is_epic",
+  "is_rare",
+  "is_patoshi",
+  "is_palindrome",
+  "is_billionaire",
+  "is_1_transaction",
+  "is_2_transaction",
+  "is_miner_message",
+  "is_sub_100",
+  "is_sub_1k",
+  "is_sub_10k",
+  "is_sub_25k",
+  "is_sub_50k",
+  "is_sub_100k",
+  "is_100k_out",
+  "is_250k_out",
+  "is_500k_out",
+  "is_1m_out",
+  "is_3m_out",
+  "is_5m_out",
 ];
 
 export default function Browser() {
@@ -35,7 +55,7 @@ export default function Browser() {
     let offset = pageParam * LIMIT;
     try {
       const res = await fetch(
-        "http://api.bitmap.community/api/v1/metrics/rank?metric=" +
+        "https://api.bitmap.community/api/v1/metrics/rank?metric=" +
           selectedTrait +
           "&offset=" +
           offset +
