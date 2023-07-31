@@ -29,7 +29,12 @@ const fetchBitmaps = async (blockHeight: string) => {
       "http://api.bitmap.community/api/v1/rarity/" +
         blockHeight +
         "?api-key=" +
-        process.env.NEXT_PUBLIC_API_KEY || ""
+        process.env.NEXT_PUBLIC_API_KEY || "",
+      {
+        next: {
+          revalidate: 60,
+        },
+      }
     );
     if (res.status === 404) {
       throw new Error("Couldn't fetch the bitmaps, try again later");
