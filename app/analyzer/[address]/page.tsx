@@ -34,6 +34,7 @@ const fetchBitmaps = async (blockHeight: string) => {
         next: {
           revalidate: 60,
         },
+        cache: "no-store",
       }
     );
     if (res.status === 404) {
